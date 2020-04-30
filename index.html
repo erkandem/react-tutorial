@@ -20,12 +20,13 @@
     <script type="text/babel">
       class HelloWorld extends React.Component {
         render () {
-          return <div><p>Hello, world!</p></div>
+          return <div><p>Hello, {this.props.greetTarget}!</p></div>
+
         }
       }
 
       ReactDOM.render(
-        <HelloWorld/>,
+        <HelloWorld greetTarget="Nurse"/>,
         document.querySelector("#container")
       );
     </script>
