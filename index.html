@@ -17,7 +17,17 @@
 </head>
   <body>
     <div id="container"></div>
-      <script type="text/babel">
+    <script type="text/babel">
+      class HelloWorld extends React.Component {
+        render () {
+          return <div><p>Hello, world!</p></div>
+        }
+      }
+
+      ReactDOM.render(
+        <HelloWorld/>,
+        document.querySelector("#container")
+      );
     </script>
   </body>
 </html>
