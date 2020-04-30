@@ -18,15 +18,17 @@
   <body>
     <div id="container"></div>
     <script type="text/babel">
-      class HelloWorld extends React.Component {
+      class HelloButton extends React.Component {
         render () {
-          return <div><p>Hello, {this.props.greetTarget}!</p></div>
-
+          return <div><button type={this.props.behavior}>{this.props.children}</button></div>
         }
       }
 
       ReactDOM.render(
-        <HelloWorld greetTarget="Nurse"/>,
+        <HelloButton behavior="send">
+          Say hello to a nurse!
+        </HelloButton>
+        ,
         document.querySelector("#container")
       );
     </script>
