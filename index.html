@@ -37,6 +37,11 @@
           this.timerTick = this.timerTick.bind(this);
         }
         timerTick () {
+          /*
+            Will update the strikes property of the state object of the component
+            to illustrate how many fictional lightnings alredy have striked since
+            the user hit the page/app
+           */
           this.setState({strikes: this.state.strikes + 100});
         }
         componentDidMount(){
