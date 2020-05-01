@@ -33,11 +33,19 @@
       );
     }
   }
+  var circleComponents = [];
+  var colorsArray = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
+  var i;
+  for (i = 0; i < colorsArray.length; i++) {
+    var color = colorsArray[i];
+    circleComponents.push(<Circle key={i + color} bgColor={color}/>)
+  }
+
   ReactDOM.render(
           <div>
-            <Circle bgColor="#F9C240" />
+            {circleComponents}
           </div>,
-          document.querySelector("#container");
+          document.querySelector("#container")
   );
 </script>
 </body>
