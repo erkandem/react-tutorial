@@ -34,7 +34,14 @@
         constructor(props) {
           super(props);
           this.state = {strikes: 0};
-          this.timerTick = this.timerTick.bind(this);
+          this.timerTick = this.timerTick.bind(
+                  /*
+                  until bind is called timerTick does not know
+                  that the component is meant with `this`
+                  instead of it's method scope `this`
+                  */
+                  this
+          );
         }
         timerTick () {
           /*
