@@ -1,5 +1,9 @@
 import React from "react"
+import IPAddress from "./IPAddress.js"
+
+
 var xhr;
+
 
 class IPAddressContainer extends React.Component {
     constructor(props){
@@ -43,8 +47,9 @@ class IPAddressContainer extends React.Component {
         }
     }
     render() {
-        return <p>{this.state.ip_address}</p>
+        return <IPAddress ip={this.state.ip_address}/>
     }
 }
+
 
 export default IPAddressContainer;
