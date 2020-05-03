@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import IPAddressContainer from "./IPAddressContainer"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <IPAddressContainer/>
   </React.StrictMode>,
   document.getElementById('root')
 );
