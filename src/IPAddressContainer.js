@@ -7,11 +7,11 @@ var xhr;
 
 class IPAddressContainer extends React.Component {
     constructor(props){
-    super(props);
-    this.state = {
-        ip_address: "..."
-    };
-    this.processRequest = this.processRequest.bind(this);
+        super(props);
+        this.state = {
+            ip_address: "..."
+        };
+        this.processRequest = this.processRequest.bind(this);
     }
 
     componentDidMount(){
