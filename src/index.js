@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+var destionation = document.getElementById('container')
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('container')
+    </React.StrictMode>,
+    destination
 );
 
 // If you want your app to work offline and load faster, you can change
