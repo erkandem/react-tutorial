@@ -33,7 +33,7 @@ class TodoList extends Component {
         }
         this.setState({items: itemsArray});
         e.preventDefault();
-
+        this.resetInput()
     }
 
     resetInput() {
