@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-
+import FlipMove from 'react-flip-move';
 
 class TodoList extends Component {
     constructor(props) {
@@ -12,7 +12,9 @@ class TodoList extends Component {
         var renderedEntries = entries.map(this.createTask);
         return (
             <ul className="theList">
+                <FlipMove duration={250} easing="ease-out">
                 {renderedEntries}
+                </FlipMove>
             </ul>
         )
     }
