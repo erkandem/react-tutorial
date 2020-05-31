@@ -29,7 +29,10 @@ class TodoList extends Component {
     addItem(e) {
         var itemsArray = this.state.items;
         if (this._inputElement.value !== "") {
-            itemsArray.push(this._inputElement.value)
+            itemsArray.push({
+                text: this._inputElement.value,
+                key: Date.now()
+            });
         }
         this.setState({items: itemsArray});
         e.preventDefault();
