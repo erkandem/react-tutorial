@@ -7,6 +7,8 @@ class TodoList extends Component {
         this.state = {
             items: {}
         };
+        this.addItem = this.addItem.bind(this);
+        this.resetInput = this.resetInput.bind(this);
     }
     render() {
         return (
@@ -22,6 +24,18 @@ class TodoList extends Component {
                 </div>
             </div>
         );
+    }
+
+    addItem(e) {
+        var itemsArray = this.state.items;
+        if (this._inputElement.value !== "") {
+            itemsArray.push(this._inputElement.value)
+        }
+        this.setState({items: itemsArray});
+    }
+
+    resetInput() {
+        this._inputElement.value = "";
     }
     }
 
