@@ -5,7 +5,7 @@ class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: {}
+            items: []
         };
         this.addItem = this.addItem.bind(this);
         this.resetInput = this.resetInput.bind(this);
