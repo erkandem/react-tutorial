@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-var destionation = document.getElementById('container')
+var destination = document.querySelector('#container');
 
 ReactDOM.render(
   <React.StrictMode>
