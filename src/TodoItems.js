@@ -4,7 +4,8 @@ import React, { Component } from "react"
 class TodoList extends Component {
     constructor(props) {
         super(props);
-        this.createTask = this.createTask.bind(this)
+        this.createTask = this.createTask.bind(this);
+        this.delete = this.delete.bind(this);
     }
     render() {
         var entries = this.props.entries;
@@ -16,7 +17,16 @@ class TodoList extends Component {
         )
     }
     createTask(item) {
-        return <li key={item.key}>{item.text}</li>
+        return (
+            <li
+                onClick={() => this.delete(item.key)}
+                key={item.key}>
+                {item.text}
+            </li>
+        );
+    }
+    delete(key) {
+        this.props.delete(key);
     }
 }
 
