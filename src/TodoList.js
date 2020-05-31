@@ -32,6 +32,8 @@ class TodoList extends Component {
             itemsArray.push(this._inputElement.value)
         }
         this.setState({items: itemsArray});
+        e.preventDefault();
+
     }
 
     resetInput() {
