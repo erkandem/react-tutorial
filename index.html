@@ -34,10 +34,13 @@
     }
   }
   var circleComponents = [];
+  // suppose data in colorsArray remotely fetch data, and we don't know
+  // just how many objects there are going to be.
   var colorsArray = ["#393E41", "#E94F37", "#1C89BF", "#A1D363"];
   var i;
   for (i = 0; i < colorsArray.length; i++) {
     var color = colorsArray[i];
+    // being sure that we don't get a unique set of pieces
     circleComponents.push(<Circle key={i + color} bgColor={color}/>)
   }
 
