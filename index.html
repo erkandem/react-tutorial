@@ -28,7 +28,7 @@
 </head>
   <body>
     <div id="container"></div>
-      <script type="text/babel">
+    <script type="text/babel">
       class Counter extends React.Component {
         render() {
           var counterStyle = {
@@ -37,27 +37,32 @@
             color: "#333",
             fontWeight: "bold"
           };
-          return (<div style={counterStyle}>
-            {this.props.display}
-          </div>)
+          return (
+            <div style={counterStyle}>
+              {this.props.display}
+            </div>
+          )
         }
       }
+
       class CounterParent extends React.Component {
         constructor(props) {
           super(props);
           this.state = {count: 0};
           this.increase = this.increase.bind(this);
         }
+
         increase(e) {
-          var currentCount = this.state.count;
-          if (e.shiftKey) {
+          /* the eventhandler */
+          var currentCount = this.state.count;  // in JS, currentCount is a new memory spot
+          if (e.shiftKey) { // we can by default capture many key, mouse actions e.g. also ctrlKey
             currentCount += 10;
           } else {
             currentCount += 1;
           }
-
           this.setState({count: currentCount});
         }
+
         render () {
           var backgroundStyle = {
             padding: 50,
@@ -68,13 +73,19 @@
             textAlign: "center"
           };
           return (
-                  <div style={backgroundStyle}>
-                    <Counter display={this.state.count}/>
-                    <CounterButton clickHandler={this.increase}/>
-                  </div>
+            <div style={backgroundStyle}>
+              {/* notice here how this.state rather than this.props is used as input*/}
+              <Counter display={this.state.count}/>
+              {/*
+              method of the parent is passed as the a parameter.
+              Eventually, it is assigned as the button click event handler
+              */}
+              <CounterButton clickHandler={this.increase}/>
+            </div>
           );
         }
       }
+
       class CounterButton extends React.Component {
         render () {
           var buttonStyle = {
@@ -87,20 +98,25 @@
             lineHeight: "3px"
           };
           return (
-                  <div>
-                    <button onClick={this.props.clickHandler} style={buttonStyle}>+</button>
-                  </div>
-            );
+            <div>
+              {/*
+              button elements can get assigned a handler
+              here it's called clickHandler and
+              has to be passed in the instantiation.
+              */}
+              <button onClick={this.props.clickHandler} style={buttonStyle}>+</button>
+            </div>
+          );
         }
       }
+
       var destination = document.querySelector("#container");
       ReactDOM.render(
-              <div>
-                <CounterParent/>
-              </div>,
-              destination
+        <div>
+          <CounterParent/>
+        </div>,
+        destination
       );
     </script>
   </body>
 </html>
-
