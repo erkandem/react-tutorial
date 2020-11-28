@@ -18,18 +18,37 @@
   <body>
     <div id="container"></div>
     <script type="text/babel">
-      class HelloButton extends React.Component {
-        render () {
-          return <div><button type={this.props.behavior}>{this.props.children}</button></div>
+      class HelloButton extends React.Component { // component declaration using class style
+        render () {  // each needs a render method
+
+          return <div>
+            {/*
+            "this" - this component, typical JS sense
+            "this.props.behavior" - like html attributes, "behaviour" is our choice
+            "this.props" - "properties" mostly everything initially?
+            "{}" - evaluate what is inside of curly braces
+                   otherwise it is just taken literally
+            "this.props.children" - special property "children, so whatever is inside of the component
+                                    like <MyComponent>Whatever is here goes to children</MyComponent>
+            "div", "button" - plain known old HTML
+            */}
+            <button type={this.props.behavior}>
+              {this.props.children}
+            </button>
+          </div>
         }
       }
+      var destination = document.querySelector("#container");
+      // create an instance of our component and
+      // add the desired type (what happens if the button is clicked) and
+      // a child (rendered as text on/in button)
 
+      // + the destination to mount the "app"
       ReactDOM.render(
         <HelloButton behavior="send">
           Say hello to a nurse!
         </HelloButton>
-        ,
-        document.querySelector("#container")
+        ,destination
       );
     </script>
   </body>
