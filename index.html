@@ -33,7 +33,9 @@
       class LightningCounter extends React.Component {
         constructor(props) {
           super(props);
-          this.state = {strikes: 0};
+          // (condition ? if true : if false)
+          // added option to set an initial value from property
+          this.state = {strikes: (this.props.strikes ? this.props.strikes : 0)};
           this.timerTick = this.timerTick.bind(
                   /*
                   until bind is called timerTick does not know
@@ -82,23 +84,25 @@
             color: "#999",
             borderRadius: 10
           };
-            var textStyles = {
-              emphasis: {
-                fontSize: 38,
-                ...commonStyle  // equivalent to python **dict
-              },
-              smallEmphasis: {
-                ...commonStyle
-              },
-              small: {
-                fontSize: 17,
-                opacity: 0.5,
-                ...commonStyle
-              }
-            };
+          var textStyles = {
+            // bundle all your testStyle in one handy object
+            emphasis: {
+              fontSize: 38,
+              ...commonStyle  // equivalent to python **dict
+            },
+            smallEmphasis: {
+              // and a way to DRY up style sheet code
+              ...commonStyle
+            },
+            small: {
+              fontSize: 17,
+              opacity: 0.5,
+              ...commonStyle
+            }
+          };
           return (
                   <div style={divStyle}>
-                    <LightningCounter />
+                    <LightningCounter strikes={50}/>
                     <h2 style={textStyles.smallEmphasis}>LIGHTNING STRIKES</h2>
                     <h2 style={textStyles.emphasis}>WORLDWIDE</h2>
                     <p style={textStyles.small}>(since you loaded this example)</p>
