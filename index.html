@@ -56,6 +56,16 @@
 
     ReactDOM.render(
         <div>
+            {/*
+            notice that the Shirt component does not have
+            a usage "color", "num" or "size" property which
+            is passed here.
+            They are not even defined on the lower level component "Label" but
+            on the third level.
+            So the "...this.props" pattern (spread pattern) could be compared to the "**kwargs"
+            expand pattern in python functions.
+            upsides and downsides
+            */}
             <Shirt color="steelblue" num="3.14" size="medium"/>
         </div>,
         document.querySelector("#container")
