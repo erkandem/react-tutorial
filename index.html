@@ -24,57 +24,62 @@
 </head>
   <body>
     <div id="container"></div>
-      <script type="text/babel">
+    <script type="text/babel">
 
-        class ColorTile extends React.Component {
-          render() {
-            var ColorTileStyle = {
-              backgroundColor: this.props.bgcolor,
-              height: 150
-            };
-            return <div style={ColorTileStyle}></div>;
-          }
+      class ColorTile extends React.Component {
+        /* representing the tile filled with the desired background color*/
+        render() {
+          var colorTileStyle = {
+            backgroundColor: this.props.bgcolor, // now we can set the color at creation
+            height: 150
+          };
+          return <div style={colorTileStyle}></div>;
         }
-        class ColorCardDescriptor extends React.Component {
-          render () {
-            var ColorCardStyle = {
-              padding: 10,
-              fontFamily: "sans-serif",
-              fontWeight: "bold",
-              fontSize: 15
-            };
-            return <div style={ColorCardStyle}>{this.props.children}</div>;
-          }
-        }
-        class ColorCard extends React.Component {
-          render () {
-            var ColorCardStyle = {
-              height: 200,
-              width: 150,
-              padding: 0,
-              backgroundColor: "#FFF",
-              boxShadow: "0px 0px 5px #666"
-            };
-            return (
-                    <div style={ColorCardStyle}>
-                      <ColorTile bgcolor={this.props.tileColor}/>
-                      <ColorCardDescriptor>
-                        {this.props.tileColor}
-                        </ColorCardDescriptor>
-                      </div>
-            );
+      }
 
-          }
+      class ColorCardDescriptor extends React.Component {
+        render () {
+          var colorCardStyle = {
+            padding: 10,
+            fontFamily: "sans-serif",
+            fontWeight: "bold",
+            fontSize: 15
+          };
+          // whatever is inside this element is rendered put inside the div
+          return <div style={colorCardStyle}>{this.props.children}</div>;
         }
-        var destination = document.querySelector("#container");
+      }
 
-        ReactDOM.render(
-                <div>
-                  <ColorCard tileColor="#FFAAFF"/>
-                </div>,
-                destination
+      class ColorCard extends React.Component {
+        /* combining both the color card and descriptor */
+        render () {
+          var ColorCardStyle = {
+            height: 200,
+            width: 150,
+            padding: 0,
+            backgroundColor: "#FFF",
+            boxShadow: "0px 0px 5px #666"
+          };
+          return (
+                  <div style={ColorCardStyle}>
+                    <ColorTile bgcolor={this.props.tileColor}/>
+                    <ColorCardDescriptor>
+                      {this.props.tileColor}
+                    </ColorCardDescriptor>
+                  </div>
+          );
+        }
+      }
+
+      var destination = document.querySelector("#container");
+
+      ReactDOM.render(
+              <div>
+                <ColorCard tileColor="#FFAAFF"/>
+              </div>,
+              destination
       )
-    </script>
+  </script>
   </body>
 </html>
 
