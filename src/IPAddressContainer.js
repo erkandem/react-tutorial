@@ -9,7 +9,7 @@ class IPAddressContainer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            ip_address: "..."
+            ip_address: "..." // initializing state to show at least sth
         };
         this.processRequest = this.processRequest.bind(this);
     }
@@ -19,8 +19,17 @@ class IPAddressContainer extends React.Component {
         access from `http://localhost:<port>/` won't work in firefox.
         Try the local network address instead.
         reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS/Errors/CORSDidNotSucceed?utm_source=devtools&utm_medium=firefox-cors-errors&utm_campaign=default
-
         reference: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+        nope it was ad-blocker
+
+        Notice that we make the XHR request in a lifecycle method
+        which called after the "render" is called
+
+        Also note, since it's overriding a frame work method,
+        we don't have to bind "this" like done for custom method.
+
+        Reference: https://reactjs.org/docs/react-component.html
         */
         xhr = new XMLHttpRequest();
         xhr.open("GET", "https://ipinfo.io/json", true);
