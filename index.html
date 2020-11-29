@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Accessing DOM elements in React</title>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>Accessing DOM elements in React</title>
 
-<!--
-<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"> </script>
-<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
--->
+    <!--
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"> </script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    -->
 
-<script src="js/react.development.js"></script>
-<script src="js/react-dom.development.js"> </script>
-<script src="js/babel.min.js"></script>
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"> </script>
+    <script src="js/babel.min.js"></script>
 
   <style>
     #container {
@@ -50,10 +49,19 @@
       font-family: sans-serif;
     }
   </style>
-</head>
-<body>
-<h1 id="colorHeading">Colorizer</h1>
-  <div id="container"></div>
+  </head>
+  <body>
+    <h1 id="colorHeading">Colorizer</h1>
+    <div id="container">
+      <!--
+      This is the element where the app gets mounted
+      Most of what react does, it does so here.
+      Notice however, that with "ReactDOM.createPortal(child, container)"
+      we change the heading outside of the div with id="container"
+
+      Reference: https://reactjs.org/docs/portals.html
+      -->
+    </div>
     <script type="text/babel">
       class Colorizer extends React.Component {
         constructor(props) {
@@ -65,11 +73,11 @@
           this.colorValue = this.colorValue.bind(this);
           this.setNewColor = this.setNewColor.bind(this);
         }
+
         colorValue(e) {
-          this.setState({
-            color: e.target.value
-          });
+          this.setState({color: e.target.value});
         }
+
         setNewColor(e) {
           this.setState({
             bgColor: this.state.color
@@ -78,51 +86,52 @@
           this._input.value = "";
           e.preventDefault();
         }
+
         render() {
           var squareStyle = {
             backgroundColor: this.state.bgColor
           };
           var self = this; // can be avoided with ES6 Arrow function p 143
           return (
-                  <div className="colorArea">
-                    <div style={squareStyle} className="colorSquare"></div>
-                    <form onSubmit={this.setNewColor}>
-                      <input onChange={this.colorValue}
-                            ref={
-                              function(el) {
-                                /*
-                                creates a reference in the JS object representing the component
-                                self is used to avoid collision with the this keyword.
-                                one underscore is used to ? decrease collision probability
-                                 */
-                                self._input = el;
-                              }
-                            }
-                             placeholder="Enter a color value">
-
-                      </input>
-                      <button type="submit">go</button>
-                    </form>
-                    <ColorLabel color={this.state.bgColor}/>  {/* ad hoc defined  component called with a prop called `color`*/}
-                  </div>
+            <div className="colorArea">
+              <div style={squareStyle} className="colorSquare"></div>
+              <form onSubmit={this.setNewColor}>
+                <input onChange={this.colorValue}
+                  ref={
+                    function(el) {
+                      /*
+                      creates a reference in the JS object representing the component
+                      self is used to avoid collision with the "this" keyword.
+                      one underscore is used to ? decrease collision probability
+                       */
+                      self._input = el;
+                    }
+                  }
+                  placeholder="Enter a color value, e.g. #ffa">
+                </input>
+                <button type="submit">go</button>
+              </form>
+              <ColorLabel color={this.state.bgColor}/>  {/* ad hoc defined  component called with a prop called `color`*/}
+            </div>
           );
         }
       }
       var heading = document.querySelector("#colorHeading");
+
       class ColorLabel extends React.Component {
-        /* connects out of application entry point DOM element to app logic*/
+        /* connects out-of-application entry point DOM element to app logic */
         render() {
-          return ReactDOM.createPortal(
-                  ": " + this.props.color,
-                  heading // location (i.e.  reference to DOM element)
-          );
+          // note that, whatever is initially in the DOM element is persists.
+          // changes here get appended and only the appended changes are reactive
+          return ReactDOM.createPortal( ": " + this.props.color, heading);
         }
       }
+
       ReactDOM.render(
-              <div>
-                <Colorizer />
-              </div>,
-              document.querySelector("#container")
+        <div>
+          <Colorizer />
+        </div>,
+        document.querySelector("#container")
       );
     </script>
   </body>
